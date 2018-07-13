@@ -1,0 +1,8 @@
+{
+    "directory_name": "yourpackagename",
+    "file_name": "somefilename",
+    "cog_name": "SomeCogName",
+    "author": "Your name",
+    "description": "A description of what this cog is for",
+    "config_id": "123456789"
+}
