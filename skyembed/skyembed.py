@@ -96,4 +96,7 @@ class Embed(commands.Cog):
         return
         
         
-        hh
+       
+
+def setup(bot):
+    bot.add_cog(skyembed(Bot))
