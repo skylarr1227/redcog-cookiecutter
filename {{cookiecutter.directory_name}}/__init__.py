@@ -1,6 +1,6 @@
-from .{{cookiecutter.file_name}} import {{cookiecutter.cog_name}}
+from .skyembed import Skyembed
 
 
 def setup(bot):
-    cog = {{cookiecutter.cog_name}}(bot)
+    cog = Skyembed(bot)
     bot.add_cog(cog)
