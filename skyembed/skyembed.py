@@ -122,4 +122,4 @@ class Skyembed(commands.Cog):
        
 
 def setup(bot):
-    bot.add_cog(skyembed(Bot))
+    bot.add_cog(Skyembed(Bot))
