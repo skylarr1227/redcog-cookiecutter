@@ -1,4 +1,4 @@
-from .skyembed import Skyembed
+from .sky.skyembed import Skyembed
 
 
 def setup(bot):
