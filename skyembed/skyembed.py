@@ -55,8 +55,6 @@ class Skyembed(commands.Cog):
     
     @listener()
     async def on_message(self, message):
-        if isinstance
-    async def on_message(message):
         guild = message.guild
         if guild:
             path = "chatlogs/{}.txt".format(guild.id)  
