@@ -34,6 +34,7 @@ colors = {
   'NOT_QUITE_BLACK': 0x23272A
 }
 
+bot = commands.Bot(command_prefix=command_prefix)
 
 class Skyembed(commands.Cog):
 
