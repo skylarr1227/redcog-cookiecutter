@@ -1,6 +1,8 @@
 from discord.ext import commands
 import discord
 import random
+import re
+from redbot.core import Config, commands, checks
 
 # These color constants are taken from discord.js library
 colors = {
@@ -122,4 +124,4 @@ class Skyembed(commands.Cog):
        
 
 def setup(bot):
-    bot.add_cog(Skyembed(Bot))
+    bot.add_cog(skyembed(Bot))
