@@ -64,7 +64,7 @@ class Skyembed(commands.Cog):
             # As well as by the user who used the command.
             return ms.channel == ctx.message.channel and ms.author == ctx.message.author
 
-         the title
+         #the title
         await ctx.send(content='What would you like the title to be?')
 
         # Wait for a response and get the title
