@@ -35,15 +35,25 @@ colors = {
 }
 
 bot = commands.Bot
-
+BaseCog = getattr(commands, "Cog", object)
+listener = getattr(commands.Cog, "listener", None)  # Trusty + Sinbad
+if listener is None:
+  
+    def listener(name=None):
+        return lambda x: x
+    
 class Skyembed(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
 
+        
+
 
     
-    @bot.event
+    @listener()
+    async def on_message(self, message):
+        if isinstance
     async def on_message(message):
         guild = message.guild
         if guild:
