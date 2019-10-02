@@ -60,7 +60,7 @@ class Skyembed(commands.Cog):
  #           with open(path, 'a+') as f:
  #               print("{0.timestamp} : {0.author.name} : {0.content}".format(message), file=f)
    #     await bot.process_commands(message)
-     async def choice205(client):
+     async def on_message(client):
         filename = "allmessages_logs.txt"
         attachments = message.attachments
         links=[]
