@@ -38,7 +38,7 @@ colors = {
 
 bot = commands.Bot
 BaseCog = getattr(commands, "Cog", object)
-listener = getattr(commands.Cog, "listener", None)  # Trusty + Sinbad
+listener = getattr(commands.Cog, "listener", None) 
 if listener is None:
   
     def listener(name=None):
@@ -53,14 +53,15 @@ class Skyembed(commands.Cog):
 
 
     
-  #  @listener()
+  #  
 #    async def on_message(self, message):
 #  #   if guild:
 #            path = "chatlogs/{}.txt".format(guild.id)  
  #           with open(path, 'a+') as f:
  #               print("{0.timestamp} : {0.author.name} : {0.content}".format(message), file=f)
    #     await bot.process_commands(message)
-     async def on_message(client):
+    @listener()
+    async def on_message(client):
         filename = "allmessages_logs.txt"
         attachments = message.attachments
         links=[]
@@ -80,9 +81,7 @@ class Skyembed(commands.Cog):
     async def embed_command(self, ctx):
 
         # Defined check function  
-        def check(ms):
-            # Look for the message sent in the same channel where the command was used
-            # As well as by the user who used the command.
+        def check(ms):        
             return ms.channel == ctx.message.channel and ms.author == ctx.message.author
 
          #title
