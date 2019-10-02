@@ -1,0 +1,11 @@
+{
+    "author": ["Skylarr"],
+    "install_msg": "This cog was made by skylarr#6666, thanks for installing it.",
+    "name": "skylog cog",
+    "disabled": false,
+    "short": "Sky's message logging cog",
+    "description": "Sky's message logging cog",
+    "tags": [],
+    "requirements": [],
+    "hidden": false
+}
