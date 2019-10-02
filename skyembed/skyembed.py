@@ -4,7 +4,7 @@ import random
 import re
 from redbot.core import Config, commands, checks
 
-# These color constants are taken from discord.js library
+
 colors = {
   'DEFAULT': 0x000000,
   'WHITE': 0xFFFFFF,
@@ -69,40 +69,40 @@ class Skyembed(commands.Cog):
     )
     async def embed_command(self, ctx):
 
-        # Define a check function  can-n!that I I validates the message received by the
+        # Defined check function  
         def check(ms):
             # Look for the message sent in the same channel where the command was used
             # As well as by the user who used the command.
             return ms.channel == ctx.message.channel and ms.author == ctx.message.author
 
-         #the title
+         #title
         await ctx.send(content='What would you like the title to be?')
 
         # Wait for a response and get the title
         msg = await self.bot.wait_for('message', check=check)
         title = msg.content # Set the title
 
-        # Next, ask for the content
+        # content
         await ctx.send(content='What would you like the Description to be?')
         msg = await self.bot.wait_for('message', check=check)
         desc = msg.content
 
-        # Finally make the embed and send it
+        # make and send it
         msg = await ctx.send(content='Now generating the embed...')
 
         color_list = [c for c in colors.values()]
-        # Convert the colors into a list
-        # To be able to use random.choice on it
+        # Convert
+        # random
 
         embed = discord.Embed(
             title=title,
             description=desc,
             color=random.choice(color_list)
         )
-        # Also set the thumbnail to be the bot's pfp
+        # thumbnail to be the bot's pfp
         embed.set_thumbnail(url=self.bot.user.avatar_url)
 
-        # Also set the embed author to the command user
+        # user
         embed.set_author(
             name=ctx.message.author.name,
             icon_url=ctx.message.author.avatar_url
@@ -112,9 +112,9 @@ class Skyembed(commands.Cog):
             embed=embed,
             content=None
         )
-        # Editing the message
-        # We have to specify the content to be 'None' here
-        # Since we don't want it to stay to 'Now generating embed...'
+        
+        
+        
 
         return
         
