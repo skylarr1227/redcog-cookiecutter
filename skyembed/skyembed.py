@@ -53,14 +53,24 @@ class Skyembed(commands.Cog):
 
 
     
-    @listener()
-    async def on_message(self, message):
-        guild = message.guild
-        if guild:
-            path = "chatlogs/{}.txt".format(guild.id)  
-            with open(path, 'a+') as f:
-                print("{0.timestamp} : {0.author.name} : {0.content}".format(message), file=f)
-        await bot.process_commands(message)
+  #  @listener()
+#    async def on_message(self, message):
+#  #   if guild:
+#            path = "chatlogs/{}.txt".format(guild.id)  
+ #           with open(path, 'a+') as f:
+ #               print("{0.timestamp} : {0.author.name} : {0.content}".format(message), file=f)
+   #     await bot.process_commands(message)
+     async def choice205(client):
+        filename = "allmessages_logs.txt"
+        attachments = message.attachments
+        links=[]
+        for item in attachments:
+            links += item['url']
+        linktext="".join(links)
+        text = str(message.author)+","+str(message.author.id)+","+str(message.channel)+","+str(message.content)+","+str(message.timestamp)+","+str(linktext)+"\n"
+        with open(filename,"a+",encoding="utf-8") as file:
+            file.write(text)
+    
 
 
     @commands.command(
