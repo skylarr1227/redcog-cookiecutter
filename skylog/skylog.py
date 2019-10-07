@@ -1,82 +1,53 @@
-from aioconsole import ainput
-import sys
-import asyncio
 import discord
+import asyncio
+import datetime
+import json
 import os
-global non_bmp_map
-non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
+
+client = discord.Client()
+cfg = open("config.json", "r")
+tmpconfig = cfg.read()
+cfg.close()
+config = json.loads(tmpconfig)
+
+
+guild_id = config["server-id"]
+logs_channel = config["logs-channel-id"]
+
+
+invites = {}
+last = ""
+
+async def fetch():
+ global last
+ global invites
+ await client.wait_until_ready()
+ gld = client.get_guild(int(guild_id))
+ logs = client.get_channel(int(logs_channel))
+ while True:
+  invs = await gld.invites()
+  tmp = []
+  for i in invs:
+   for s in invites:
+    if s[0] == i.code:
+     if int(i.uses) > s[1]:
+      usr = gld.get_member(int(last))
+      eme = discord.Embed(description = "Just joined the server", color = 0x03d692, title = " ")
+      eme.set_author(name = usr.name + "#" + usr.discriminator, icon_url = usr.avatar_url)
+      eme.set_footer(text = "ID: " + str(usr.id))
+      eme.timestamp = usr.joined_at
+      eme.add_field(name = "Used invite", value = "Inviter: " + i.inviter.mention + " (`" + i.inviter.name + "#" + i.inviter.discriminator + "`)\nCode: `" + i.code + "`\nUses: `" + str(i.uses) + "`", inline = False)
+      await logs.send(embed = eme)
+   tmp.append(tuple((i.code, i.uses)))
+  invites = tmp
+  await asyncio.sleep(4)
 
 
 
 
-#Lists all users avatars and server picture in server
-async def choice201(client):
-    id1 = str(input("Enter ID of server\n"))
-    for server in client.servers:
-        if server.id == id1:
-            print("[+] All avatars and server picture in server "+str(server.name)+"\n")
-            print(" [@] Server Picture : "+str(server.icon_url)+" | Invite Splash : "+str(server.splash_url))
-            for member in server.members:
-                try:print("   [-] Avatar URL : "+str(member.avatar_url)+" | Name : "+str(member.name.translate(non_bmp_map)))
-                except:pass
-    await client.logout()            
-                
-#Lists all emoji names and emoji urls
-async def choice202(client):
-    id1 = str(input("Enter ID of server\n"))
-    for server in client.servers:
-        if server.id == id1:
-            print("[+] All emojos on "+str(server.name)+"\n")
-            for emojo in server.emojis:
-                print("   [-] Name : "+str(emojo.name)+" | URL : "+str(emojo.url))
-    await client.logout()
+@client.event
+async def on_member_join(meme):
+ global last
+ last = str(meme.id)
 
-#Initalise choice203 in bot startup
-async def choice203(client):
-    serverId = str(input("Enter ID of server\n"))
-    return serverId
 
-#Message logging
-async def choice203message(client,message,server):
-    if str(message.server.id) == str(server):
-        filename = str(message.server)+"_logs.txt"
-        attachments = message.attachments
-        links=[]
-        for item in attachments:
-            links += item['url']
-        linktext="".join(links)
-        text = str(message.author)+","+str(message.author.id)+","+str(message.channel)+","+str(message.content)+","+str(message.timestamp)+","+str(linktext)+"\n"
-        with open(filename,"a+",encoding="utf-8") as file:
-            file.write(text)
-
-#Initalise choice204 in bot startup
-async def choice204(client):
-    serverFile = str(input("Enter text file name where servers are\n"))
-    with open(serverFile,"r") as file:
-        serverIds=file.read()
-    serverIds = serverIds.split(",")
-    return serverIds
-
-#Message logging widerscale
-async def choice204message(client,message,server):
-    if str(message.server.id) in server:
-        filename = str(message.server)+"_logs.txt"
-        attachments = message.attachments
-        links=[]
-        for item in attachments:
-            links += item['url']
-        linktext="".join(links)
-        text = str(message.author)+","+str(message.author.id)+","+str(message.channel)+","+str(message.content)+","+str(message.timestamp)+","+str(linktext)+"\n"
-        with open(filename,"a+",encoding="utf-8") as file:
-            file.write(text)
-#MessageLoggingALLMESSAGES
-async def choice205(client):
-    filename = "allmessages_logs.txt"
-    attachments = message.attachments
-    links=[]
-    for item in attachments:
-        links += item['url']
-    linktext="".join(links)
-    text = str(message.author)+","+str(message.author.id)+","+str(message.channel)+","+str(message.content)+","+str(message.timestamp)+","+str(linktext)+"\n"
-    with open(filename,"a+",encoding="utf-8") as file:
-        file.write(text)
