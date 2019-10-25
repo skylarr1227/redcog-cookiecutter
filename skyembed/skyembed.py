@@ -63,7 +63,7 @@ class Skyembed(commands.Cog):
         embed.add_field(name="Set Rank Display Background", value="```+setrbg [bg name]```")
         embed.add_field(name="Set Rank Color Overlay [not recommended]", value="```+setrcolor [0x52345]```")
 
-        await bot.say(embed=embed)
+        await ctx.send(embed=embed)
 
     @commands.command(
         name='sembed',
