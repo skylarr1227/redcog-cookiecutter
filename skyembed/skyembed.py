@@ -49,6 +49,22 @@ class Skyembed(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
+    @commands.command(name='phelp', description='Help menu for users profile')
+    async def profile_help(self, ctx): 
+        embed = discord.Embed(title="Skybot's leveling system", colour=discord.Colour(0x19b74d), description="How to configure your +profile options")
+        embed.set_image(url="https://pokepla.net/phelp.png")
+        embed.set_thumbnail(url="https://pokepla.net/skybot.png")
+        embed.set_author(name="Skybot's Profile/Rank System overview", icon_url="https://pokepla.net/epic2.gif")
+        embed.set_footer(text="See +rhelp, and +bhelp for detailed help on other profile sections", icon_url="https://pokepla.net/epic2.gif")
+
+        embed.add_field(name="Show backgrounds available to pick from for your +profile", value="```+backgrounds profile```")
+        embed.add_field(name="To set your background image for your +profile", value="``` +setbg <name of bg>```")
+        embed.add_field(name="To change the overlay color of your +profile [not recommended]", value="```+lvlset profile color [ex. 0xf59b42]```")
+        embed.add_field(name="To change the about me section of your +profile", value="```+setpinfo <message content>```", inline=True)
+        embed.add_field(name="To change the Title displayed above the About me section of your +profile", value="```+setptitle <desired display title>```", inline=True)
+
+        await ctx.send(embed=embed)
+    
     @commands.command(name='lvlhelp', description='Help menu for leveler module')
     async def level_help(self, ctx): 
         embed = discord.Embed(title="Skybot's leveling system", colour=discord.Colour(0xfbfcfb), description="```diff\n+ You level up by sending messages where the bot can see them\n- Hope this menu helps with using our system! Have fun!```")
