@@ -49,21 +49,24 @@ class Skyembed(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command(name='advhelp', description='Help menu for Adventure module')
-    async def adventure_help(self, ctx): 
+    @commands.command(name='advhelp', description='Help menu for the Adventure module')
+    async def adv_help(self, ctx): 
         embed = discord.Embed(title="The Adventure module", colour=discord.Colour(0x343cde), description="A general outline of our Adventure module and how to get started")
+
         embed.set_image(url="https://pokepla.net/adv.png")
         embed.set_thumbnail(url="https://pokepla.net/epic2.gif")
         embed.set_author(name="+advhelp ")
-        embed.set_footer(text="Thank you Bust, and Volpe for many new bosses, and Foreboding/Kungfuartist for all the code help past present and future, you guys are the  best for helping me learn!!!", icon_url="https://pokepla.net/epic2.gif"
+        embed.set_footer(text="Thank you Bust, and Volpe for many new bosses, and Foreboding/Kungfuartist for all the code help past present and future, you guys are the  best for helping me learn!!!", icon_url="https://pokepla.net/epic2.gif")
+
         embed.add_field(name="To start an adventure in your current channel use ", value="```+adventure```")
         embed.add_field(name="Your stats and equiped items can be viewed with", value="```+stats```")
         embed.add_field(name="You can view your backback inventory and trade items with", value="```+backpack\n+backpack trade <buyer> [asking=1000] <item>```")
         embed.add_field(name="Chests can be Combined and Looted by using", value="```+loot <type of chest> <optional #>\n+combine <type of chest ```", inline=True)
         embed.add_field(name="There are 5 basic classes to chooose from at level 10.", value="```+heroclass\n   -Bard\n   -Wizard\n   -Ramger\n   -Beserker\n   -Cleric```", inline=True)
+
         await ctx.send(embed=embed)
       
-       
+      
     @commands.command(name='phelp', description='Help menu for users profile')
     async def profile_help(self, ctx): 
         embed = discord.Embed(title="Skybot's leveling system", colour=discord.Colour(0x19b74d), description="How to configure your +profile options")
