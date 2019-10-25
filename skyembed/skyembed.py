@@ -49,7 +49,24 @@ class Skyembed(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
+    @commands.command(name='lvlhelp', description='Help menu for leveler module')
+    async def level_help(self, ctx): 
+        embed = discord.Embed(title="Skybot's leveling system", colour=discord.Colour(0xfbfcfb), description="```diff\n+ You level up by sending messages where the bot can see them\n- Hope this menu helps with using our system! Have fun!```")
 
+        embed.set_image(url="https://pokepla.net/lvlhelp.png")
+        embed.set_thumbnail(url="https://pokepla.net/skybot.png")
+        embed.set_author(name="Skybot's Profile/Rank System overview", icon_url="https://pokepla.net/epic2.gif")
+        embed.set_footer(text="See +phelp, +rhelp, and +bhelp for detailed help on each one", icon_url="https://pokepla.net/epic2.gif")
+
+        embed.add_field(name="Command for basic user configuration", value="```+lvlset```")
+        embed.add_field(name="Profile configuration options - show profile with +profile", value="```+lvlset profile```")
+        embed.add_field(name="Profile badge display configuration options", value="```+lvlset badge```")
+        embed.add_field(name="Level-up Display configuration options", value="```+lvlset levelup```", inline=True)
+        embed.add_field(name="Rank display configuration options - Show rank display with +rank", value="```+lvlset rank```", inline=True)
+
+        await ctx.send(embed=embed)
+    
+    
     @commands.command(name='rhelp', description='Help menu for users +Rank Display')
     async def rank_help(self, ctx):
         embed = discord.Embed(title="Skybot's Leveling System", colour=discord.Colour(0x12bdca), description="For help with other display options within the leveler system see: `\n+lvlhelp`")
