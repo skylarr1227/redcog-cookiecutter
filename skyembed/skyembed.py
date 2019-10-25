@@ -50,6 +50,20 @@ class Skyembed(commands.Cog):
         self.bot = bot
     
 
+    @commands.command(name='rhelp', description='Help menu for users +Rank Display')
+    async def rank_help(self, ctx):
+        embed = discord.Embed(title="Skybot's Leveling System", colour=discord.Colour(0x12bdca), description="For help with other display options within the leveler system see: `\n+lvlhelp`")
+
+        embed.set_image(url="https://pokepla.net/rhelp.png")
+        embed.set_thumbnail(url="https://pokepla.net/epic.gif")
+        embed.set_author(name="+rank Display Help", url="https://pokepla.net/epic.gif", icon_url="https://pokepla.net/epic2.gif")
+        embed.set_footer(text="Suggestions on how to make this better? DM Skylarr#6666!!", icon_url="https://pokepla.net/epic2.gif")
+
+        embed.add_field(name="Rank Background Viewer", value="```+backgrounds rank```")
+        embed.add_field(name="Set Rank Display Background", value="```+setrbg [bg name]```")
+        embed.add_field(name="Set Rank Color Overlay [not recommended]", value="```+setrcolor [0x52345]```")
+
+        await bot.say(embed=embed)
 
     @commands.command(
         name='sembed',
