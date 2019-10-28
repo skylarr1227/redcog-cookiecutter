@@ -51,13 +51,20 @@ class Skyembed(commands.Cog):
     
 
 
+
     @commands.command(name='joinsrv', description='send invite for discord server')
-    async def joinsrv(self, ctx):
-        invitelinknew = await self.bot.create_invite(destination = ctx.message.channel, xkcd = True, max_uses = 100)
-        embed = discord.Embed(title="Here's the invite link", color=0xf41af4)
-        embed.add_field(name="Discord Invite Link", value=invitelinknew)
-        embed.set_footer(text="Discord server invite link.")
-        await ctx.send(embed=embed)
+    async def create_invite(self, ctx):
+        """Create instant invite"""
+        link = await ctx.channel.create_invite(max_age = 300)
+        await ctx.send("Here is an instant invite to your server: " + link)
+
+    #@commands.command(name='joinsrv', description='send invite for discord server')
+   # async def joinsrv(self, ctx):
+    #    invitelinknew = await self.bot.create_invite(destination = ctx.message.channel, xkcd = True, max_uses = 100)
+     #   embed = discord.Embed(title="Here's the invite link", color=0xf41af4)
+    #    embed.add_field(name="Discord Invite Link", value=invitelinknew)
+    #    embed.set_footer(text="Discord server invite link.")
+    #    await ctx.send(embed=embed)
 
     @commands.command(name='advhelp', description='Help menu for the Adventure module')
     async def adv_help(self, ctx): 
