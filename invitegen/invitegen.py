@@ -47,7 +47,7 @@ class invitegen(commands.Cog):
             for page in pagify(msg, delims=["\n"]):
                 await ctx.send(box(page))
                 await asyncio.sleep(1.5)  # Just in case for rate limits
-            msg = await ctx.bot.wait_for(author=owner, timeout=15)
+            msg = await ctx.bot.wait_for('message', check=lambda message: message.author == ctx.author)
             if msg is not None:
                 try:
                     msg = int(msg.content.strip())
