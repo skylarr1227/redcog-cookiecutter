@@ -57,7 +57,7 @@ class Skyembed(commands.Cog):
         embedMsg=discord.Embed(color=0xf41af4)
         embedMsg.add_field(name="Discord Invite Link", value=invitelinknew)
         embedMsg.set_footer(text="Discord server invited link.")
-        await bot.send_message(ctx.message.channel, embed=embedMsg)
+        await ctx.send(ctx.message.channel, embed=embedMsg)
 
     @commands.command(name='advhelp', description='Help menu for the Adventure module')
     async def adv_help(self, ctx): 
