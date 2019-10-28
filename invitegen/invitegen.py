@@ -25,15 +25,15 @@ class invitegen(commands.Cog):
         """Lists servers and generates invites for them"""
         owner = ctx.message.author
         if idnum:
-            server = discord.utils.get(self.bot.guilds, id=idnum)
-            if server:
-                await self._confirm_invite(server, owner, ctx)
+            guild = discord.utils.get(self.bot.guilds, id=idnum)
+            if guild:
+                await self._confirm_invite(guild, owner, ctx)
             else:
                 await self.bot.say("I'm not in that server")
         else:
             msg = ""
-            servers = sorted(self.bot.guilds, key=lambda s: s.name)
-            for i, server in enumerate(servers, 1):
+            guilds = sorted(self.bot.guilds, key=lambda s: s.name)
+            for i, guild in enumerate(guilds, 1):
                 msg += "{}: {}\n".format(i, guild.name)
             msg += "\nTo post an invite for a server just type its number."
             for page in pagify(msg, delims=["\n"]):
@@ -43,14 +43,14 @@ class invitegen(commands.Cog):
             if msg is not None:
                 try:
                     msg = int(msg.content.strip())
-                    server = servers[msg - 1]
+                    server = guilds[msg - 1]
                 except ValueError:
                     await self.bot.say("You must enter a number.")
                 except IndexError:
                     await self.bot.say("Index out of range.")
                 else:
                     try:
-                        await self._confirm_invite(server, owner, ctx)
+                        await self._confirm_invite(guild, owner, ctx)
                     except discord.Forbidden:
                         await self.bot.say("I'm not allowed to make an invite"
                                            " for {}".format(guild.name))
