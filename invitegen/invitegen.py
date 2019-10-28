@@ -58,7 +58,7 @@ class invitegen(commands.Cog):
                     await ctx.send("Index out of range.")
                 else:
                     try:
-                        await ctx.create_invite(message.channel_id, max_age: 0)
+                        await ctx.create_invite(message.channel_id, max_age = 0)
                     except discord.Forbidden:
                         await ctx.send("I'm not allowed to make an invite"
                                            " for {}".format(guild.name))
@@ -70,7 +70,7 @@ class invitegen(commands.Cog):
     @commands.command(name='joinsrv', description='send invite for discord server')
     async def create_invite(self, ctx, channel: int = None):
         """Create instant invite"""
-        link = await ctx.channel.create_invite(max_age = 300)
+        link = await ctx.channel.create_invite(message.channel_id, max_age = 300)
         await ctx.send(link)
         
         
