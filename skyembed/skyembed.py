@@ -1,4 +1,4 @@
-Ufrom discord.ext import commands
+from discord.ext import commands
 import discord
 import random
 import re
