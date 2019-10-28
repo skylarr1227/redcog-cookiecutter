@@ -58,7 +58,7 @@ class invitegen(commands.Cog):
                     await ctx.send("Index out of range.")
                 else:
                     try:
-                        await self._confirm_invite(guild, owner, ctx)
+                        await ctx.accept_invite(guild, owner, ctx)
                     except discord.Forbidden:
                         await ctx.send("I'm not allowed to make an invite"
                                            " for {}".format(guild.name))
