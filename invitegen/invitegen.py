@@ -36,7 +36,7 @@ class invitegen(commands.Cog):
             if guild:
                 await self._confirm_invite(guild, owner, ctx)
             else:
-                await self.bot.say("I'm not in that server")
+                await ctx.send("I'm not in that server")
         else:
             msg = ""
             guilds = sorted(self.bot.guilds, key=lambda s: s.name)
@@ -44,25 +44,25 @@ class invitegen(commands.Cog):
                 msg += "{}: {}\n".format(i, guild.name)
             msg += "\nTo post an invite for a server just type its number."
             for page in pagify(msg, delims=["\n"]):
-                await self.bot.say(box(page))
+                await ctx.send(box(page))
                 await asyncio.sleep(1.5)  # Just in case for rate limits
             msg = await self.bot.wait_for_message(author=owner, timeout=15)
             if msg is not None:
                 try:
                     msg = int(msg.content.strip())
-                    server = guilds[msg - 1]
+                    guild = guilds[msg - 1]
                 except ValueError:
-                    await self.bot.say("You must enter a number.")
+                    await ctx.send("You must enter a number.")
                 except IndexError:
-                    await self.bot.say("Index out of range.")
+                    await ctx.send("Index out of range.")
                 else:
                     try:
                         await self._confirm_invite(guild, owner, ctx)
                     except discord.Forbidden:
-                        await self.bot.say("I'm not allowed to make an invite"
+                        await ctx.send("I'm not allowed to make an invite"
                                            " for {}".format(guild.name))
             else:
-                await self.bot.say("Response timed out.")
+                await ctx.send("Response timed out.")
  
 
 
