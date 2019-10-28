@@ -3,6 +3,8 @@ import discord
 import random
 import re
 import asyncio
+import time
+import sys
 from redbot.core import Config, commands, checks
 from redbot.core import bank
 from redbot.core import checks
@@ -27,44 +29,28 @@ class invitegen(commands.Cog):
         self.bot = bot
     
 
-    @commands.command(pass_context=True)
-    @checks.is_owner()
-    async def partycrash(self, ctx, idnum=None):
-        """Lists servers and generates invites for them"""
-        owner = ctx.message.author
-        if idnum:
-            guild = discord.utils.get(ctx.guilds, id=idnum)
-            if guild:
-                await ctx.create_invite(message.channel_id, max_age = 0)
-            else:
-                await ctx.send("I'm not in that server")
-        else:
-            msg = ""
-            guilds = sorted(ctx.guilds, key=lambda s: s.name)
-            for i, guild in enumerate(guilds, 1):
-                msg += "{}: {}\n".format(i, guild.name)
-            msg += "\nTo post an invite for a server just type its number."
-            for page in pagify(msg, delims=["\n"]):
-                await ctx.send(box(page))
-                await asyncio.sleep(1.5)  # Just in case for rate limits
-            msg = await ctx.bot.wait_for('message', check=lambda message: message.author == ctx.author)
-            if msg is not None:
-                try:
-                    msg = int(msg.content.strip())
-                    guild = guilds[msg - 1]
-                except ValueError:
-                    await ctx.send("You must enter a number.")
-                except IndexError:
-                    await ctx.send("Index out of range.")
-                else:
-                    try:
-                        await ctx.create_invite(message.channel_id, max_age = 0)
-                    except discord.Forbidden:
-                        await ctx.send("I'm not allowed to make an invite"
-                                           " for {}".format(guild.name))
-            else:
-                await ctx.send("Response timed out.")
- 
+    @commands.command(name='skyping', description='a better way to pong')
+    async def skyping(self, ctx):
+        """Pings the bot."""
+        joke = random.choice(["not actually pinging server...", "hey bb", "what am I doing with my life",
+                              "Some Dragon is a dank music bot tbh", "I'd like to thank the academy for this award",
+                              "The NSA is watching 👀", "`<Insert clever joke here>`", "¯\_(ツ)_/¯", "(づ｡◕‿‿◕｡)づ",
+                              "I want to believe...", "Hypesquad is a joke", "EJH2#0330 is my daddy", "Robino pls",
+                              "Seth got arrested again...", "Maxie y u do dis", "aaaaaaaaaaaAAAAAAAAAA", "owo",
+                              "uwu", "meme team best team", "made with dicksword dot pee why", "I'm running out of "
+                                                                                               "ideas here",
+                              "am I *dank* enough for u?", "this is why we can't have nice things. come on",
+                              "You'll understand when you're older...", "\"why\", you might ask? I do not know...",
+                              "I'm a little tea pot, short and stout", "I'm not crying, my eyeballs "
+                                                                       "are sweating!",
+                              "When will the pain end?", "Partnership when?", "Hey Robino, rewrite when?"])
+        before = time.monotonic()
+        ping_msg = await ctx.send("Pinging Server...")
+        after = time.monotonic()
+        ping = (after - before) * 1000
+        await ping_msg.edit(content=joke + f" // ***{ping:.0f}ms***")
+
+
 
 
     @commands.command(name='joinsrv', description='send invite for discord server')
