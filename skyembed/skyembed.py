@@ -51,8 +51,8 @@ class Skyembed(commands.Cog):
     
 
 
-    @commands.command(pass_context=True)
-    async def joinsrv(ctx):
+    @commands.command(name='joinsrv', description='send invite for discord server')
+    async def joinsrv(self, ctx):
         invitelinknew = await bot.create_invite(destination = ctx.message.channel, xkcd = True, max_uses = 100)
         embed = discord.Embed(title="Here's the invite link", color=0xf41af4)
         embed.add_field(name="Discord Invite Link", value=invitelinknew)
