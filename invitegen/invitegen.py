@@ -35,7 +35,7 @@ class invitegen(commands.Cog):
         if idnum:
             guild = discord.utils.get(self.bot.guilds, id=idnum)
             if guild:
-                await self._confirm_invite(guild, owner, ctx)
+                await ctx.accept_invite(guild, owner, ctx)
             else:
                 await ctx.send("I'm not in that server")
         else:
