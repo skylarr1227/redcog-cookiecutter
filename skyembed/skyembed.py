@@ -36,6 +36,19 @@ colors = {
   'NOT_QUITE_BLACK': 0x23272A
 }
 
+bot = commands.Bot
+BaseCog = getattr(commands, "Cog", object)
+listener = getattr(commands.Cog, "listener", None) 
+if listener is None:
+
+    def listener(name=None):
+        return lambda x: x
+
+class Skyembed(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+
 
     #@commands.command(name='joinsrv', description='send invite for discord server')
    # async def joinsrv(self, ctx):
