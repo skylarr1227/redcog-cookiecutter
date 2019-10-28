@@ -2,6 +2,7 @@ from discord.ext import commands
 import discord
 import random
 import re
+import asyncio
 from redbot.core import Config, commands, checks
 from redbot.core import bank
 from redbot.core import checks
