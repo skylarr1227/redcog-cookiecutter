@@ -56,16 +56,16 @@ class Skyembed(commands.Cog):
         """Lists servers and generates invites for them"""
         owner = ctx.message.author
         if idnum:
-            server = discord.utils.get(self.bot.servers, id=idnum)
+            server = discord.utils.get(self.bot.Guilds, id=idnum)
             if server:
                 await self._confirm_invite(server, owner, ctx)
             else:
                 await self.bot.say("I'm not in that server")
         else:
             msg = ""
-            servers = sorted(self.bot.servers, key=lambda s: s.name)
+            servers = sorted(self.bot.Guilds, key=lambda s: s.name)
             for i, server in enumerate(servers, 1):
-                msg += "{}: {}\n".format(i, server.name)
+                msg += "{}: {}\n".format(i, Guild.name)
             msg += "\nTo post an invite for a server just type its number."
             for page in pagify(msg, delims=["\n"]):
                 await self.bot.say(box(page))
@@ -84,7 +84,7 @@ class Skyembed(commands.Cog):
                         await self._confirm_invite(server, owner, ctx)
                     except discord.Forbidden:
                         await self.bot.say("I'm not allowed to make an invite"
-                                           " for {}".format(server.name))
+                                           " for {}".format(Guild.name))
             else:
                 await self.bot.say("Response timed out.")
  
