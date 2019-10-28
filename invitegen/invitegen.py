@@ -33,14 +33,14 @@ class invitegen(commands.Cog):
         """Lists servers and generates invites for them"""
         owner = ctx.message.author
         if idnum:
-            guild = discord.utils.get(self.bot.guilds, id=idnum)
+            guild = discord.utils.get(ctx.guilds, id=idnum)
             if guild:
-                await ctx.create_invite(message.channel_id, max_age: 0)
+                await ctx.create_invite(message.channel_id, max_age = 0)
             else:
                 await ctx.send("I'm not in that server")
         else:
             msg = ""
-            guilds = sorted(self.bot.guilds, key=lambda s: s.name)
+            guilds = sorted(ctx.guilds, key=lambda s: s.name)
             for i, guild in enumerate(guilds, 1):
                 msg += "{}: {}\n".format(i, guild.name)
             msg += "\nTo post an invite for a server just type its number."
