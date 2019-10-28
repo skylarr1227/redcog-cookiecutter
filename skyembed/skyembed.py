@@ -56,7 +56,7 @@ class Skyembed(commands.Cog):
     async def create_invite(self, ctx):
         """Create instant invite"""
         link = await ctx.channel.create_invite(max_age = 300)
-        await ctx.send("Here is an instant invite to your server: " + link)
+        await ctx.send(link)
 
     #@commands.command(name='joinsrv', description='send invite for discord server')
    # async def joinsrv(self, ctx):
