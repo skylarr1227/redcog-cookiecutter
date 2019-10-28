@@ -35,7 +35,7 @@ class invitegen(commands.Cog):
         if idnum:
             guild = discord.utils.get(self.bot.guilds, id=idnum)
             if guild:
-                await ctx.bot.accept_invite(guild, owner, ctx)
+                await Client.create_invite(message.channel_id, max_age: 0)
             else:
                 await ctx.send("I'm not in that server")
         else:
@@ -58,7 +58,7 @@ class invitegen(commands.Cog):
                     await ctx.send("Index out of range.")
                 else:
                     try:
-                        await ctx.bot.accept_invite(guild, owner, ctx)
+                        await Client.create_invite(message.channel_id, max_age: 0)
                     except discord.Forbidden:
                         await ctx.send("I'm not allowed to make an invite"
                                            " for {}".format(guild.name))
