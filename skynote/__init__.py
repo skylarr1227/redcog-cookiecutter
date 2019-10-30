@@ -2,5 +2,5 @@ from .skynote import skynote
 
 
 def setup(bot):
-    cog = skybot(bot)
+    cog = skynote(bot)
     bot.add_cog(cog)
