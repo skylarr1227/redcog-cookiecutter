@@ -120,7 +120,7 @@ class Skysave(commands.Cog):
         ctx,
         channel: Optional[discord.TextChannel] = None,
         *,
-        suggestion: str = "",
+        savecontent: str = "",
     ):
         """
         Save something, anything, ill even save dick pics (forever.....)
