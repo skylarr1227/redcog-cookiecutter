@@ -1,6 +1,7 @@
-from .skynote import skynote
+from . import skynote
+from cog_shared.sinbad_libs import extra_setup
 
 
+@extra_setup
 def setup(bot):
-    cog = skynote(bot)
-    bot.add_cog(cog)
+    bot.add_cog(skynote.Skynote(bot))
