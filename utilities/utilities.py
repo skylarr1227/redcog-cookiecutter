@@ -17,6 +17,9 @@ from redbot.core import commands, checks
 from discord.ext import commands
 from .tools import remove_html, resolve_emoji
 
+bot = commands.Bot
+BaseCog = getattr(commands, "Cog", object)
+
 
 class Utilities(commands.Cog):
     def __init__(self, bot):
