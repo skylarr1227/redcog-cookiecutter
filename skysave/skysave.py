@@ -48,8 +48,8 @@ class skynote:
  
     @commands.guild_only()
     @commands.group(invoke_without_command=True)
-    async def quote(self, ctx, *msg_ids):
-        """Quotes a message.
+    async def skynote(self, ctx, *msg_ids):
+        """Saves a message as note.
  
         Args:
             *msg_ids: Numeric IDs for messages to quote
@@ -66,8 +66,8 @@ class skynote:
         # Skip the rest of the function if we don't have a place to put
         # quoted messages.
         if quote_channel is None:
-            await ctx.send("You haven't specified a quote channel! " +
-                           "You can set one with `qc set #channel`.")
+            await ctx.send("You haven't specified anywhere to save the notes, please set a note channel! " +
+                           "You can set one with `skynote set #channel`.")
             return
  
         # ctx.other_channel is specified in the `quote_from` function.
@@ -186,7 +186,7 @@ class skynote:
  
         await ctx.send(f"Quoted {len(msg_ids)} {plural}.")
  
-    @quote.error
+    @skynote.error
     async def quote_error_handler(self, ctx, error):
         """Error handler for the quote command.
  
@@ -196,16 +196,16 @@ class skynote:
         if isinstance(error, commands.BadArgument):
             await ctx.send("That channel doesn't exist!")
         else:
-            print("Encountered error in quote comand:")
+            print("Encountered error in the skynote command:")
             raise error
  
-    @quote.command(name='from')
+    @skynote.command(name='from')
     async def quote_from(self, ctx, channel: discord.TextChannel, *msg_ids):
-        """Quote message(s) from a channel other than the current one.
+        """Save message(s) from a channel other than the current one.
  
         Args:
             channel (discord.TextChannel): Target channel.
-            *msg_ids: Numeric IDs for messages to quote.
+            *msg_ids: Numeric IDs for messages to save.
         """
         ctx.other_channel = channel
         await ctx.invoke(self.quote, *msg_ids)
