@@ -166,7 +166,7 @@ class Skysave(commands.Cog):
         if not (perms.send_messages and perms.embed_links):
             return await ctx.send(_("I don't have the required permissions... I am useless, self-destruct initiated."))
 
-        embed = discord.Embed(color=(await ctx.embed_color()), description=savedfile)
+        embed = discord.Embed(color=(await ctx.embed_color()), description=suggestion)
  # embed = discord.Embed(color=(await ctx.embed_color()), description=suggestion)
         embed.set_author(
             name=_("Saved by {author_info}").format(
