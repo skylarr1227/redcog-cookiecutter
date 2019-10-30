@@ -16,14 +16,14 @@ from discord.ext import commands
 from .tools import remove_html, resolve_emoji
 
 
-class Utilities:
+class Utilities(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
    
-  
+ 
     
     
-    @commands.command()
+    @commands.command(name=say)
     async def say(self, ctx, *, args: str):
         """
         Edit/Say a message and you can use the silentsay variable as well.
@@ -74,8 +74,7 @@ class Utilities:
             await ctx.send(str(args))
             
             
-    @commands.command()
-    @commands.bot_has_permissions(embed_links=True)
+    @commands.command(name=math)
     async def math(self, ctx, *, expression: str):
         """Evaluate complex mathematical equations (or simple ones, whatever you prefer).
         The available operations are as follows:
@@ -108,7 +107,7 @@ class Utilities:
         em.timestamp = datetime.datetime.now()
         await ctx.send(embed=em)
         
-    @commands.command(name=["define"])
+    @commands.command(name=define)
     async def define(self, ctx, word: str):
         """Define a word."""
         r = requests.get('http://api.pearson.com/v2/dictionaries/laes/entries?headword=' + word)
