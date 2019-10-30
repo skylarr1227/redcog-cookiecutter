@@ -1,4 +1,4 @@
-from .skysave import skynote
+from .skynote import skynote
 
 
 def setup(bot):
