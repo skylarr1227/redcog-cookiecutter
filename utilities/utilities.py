@@ -132,3 +132,6 @@ class Utilities(commands.Cog):
                 await ctx.send(resolve_emoji('ERROR', ctx) + " No results found.")
         else:
             await ctx.send(resolve_emoji('ERROR', ctx) + " No results found.")
+            
+def setup(bot):
+    bot.add_cog(Utilities(bot))
