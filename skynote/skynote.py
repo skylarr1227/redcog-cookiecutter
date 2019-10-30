@@ -26,7 +26,7 @@ class GlobalChannel(commands.Converter):
         return channel
 
 
-class QuoteTools(commands.Cog):
+class Skynote(commands.Cog):
     """
     Cog for quoting messages by ID
     """
@@ -36,7 +36,7 @@ class QuoteTools(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def quote(
+    async def savenote(
         self, ctx, channels: commands.Greedy[GlobalChannel] = None, *messageids: int
     ):
         """
@@ -50,7 +50,7 @@ class QuoteTools(commands.Cog):
 
         msgs = await find_messages(ctx, messageids, channels)
         if not msgs:
-            return await ctx.maybe_send_embed("Unable to find that message... stop fucking around.")
+            return await ctx.maybe_send_embed("Unable to find message... stop fucking around.")
 
         for m in msgs:
             if await ctx.embed_requested():
@@ -59,7 +59,7 @@ class QuoteTools(commands.Cog):
             else:
                 msg1 = "\n".join(
                     [
-                        "Saved by: {0}({0.id})".format(m.author),
+                        "Author: {0}({0.id})".format(m.author),
                         "Channel: {}".format(m.channel.mention),
                         "Time(UTC): {}".format(m.created_at.isoformat()),
                     ]
