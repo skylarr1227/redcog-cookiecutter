@@ -14,14 +14,14 @@ import pytz
 
 from redbot.core.config import Config
 from redbot.core import commands, checks
-from discord.ext import commands
+#from discord.ext import commands
 from .tools import remove_html, resolve_emoji
 
 bot = commands.Bot
 BaseCog = getattr(commands, "Cog", object)
 
 
-class Utilities(commands.Cog):
+class Skyutils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
    
@@ -139,4 +139,4 @@ class Utilities(commands.Cog):
             await ctx.send(resolve_emoji('ERROR', ctx) + " No results found.")
             
 def setup(bot):
-    bot.add_cog(Utilities(bot))
+    bot.add_cog(Skyutils(bot))
