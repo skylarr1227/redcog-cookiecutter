@@ -23,7 +23,7 @@ class Utilities(commands.Cog):
  
     
     
-    @commands.command(name=say)
+    @commands.command()
     async def say(self, ctx, *, args: str):
         """
         Edit/Say a message and you can use the silentsay variable as well.
@@ -74,7 +74,7 @@ class Utilities(commands.Cog):
             await ctx.send(str(args))
             
             
-    @commands.command(name=math)
+    @commands.command()
     async def math(self, ctx, *, expression: str):
         """Evaluate complex mathematical equations (or simple ones, whatever you prefer).
         The available operations are as follows:
@@ -107,7 +107,7 @@ class Utilities(commands.Cog):
         em.timestamp = datetime.datetime.now()
         await ctx.send(embed=em)
         
-    @commands.command(name=define)
+    @commands.command()
     async def define(self, ctx, word: str):
         """Define a word."""
         r = requests.get('http://api.pearson.com/v2/dictionaries/laes/entries?headword=' + word)
