@@ -5,7 +5,7 @@ from dateutil import tz
 from discord.ext import commands
  
  
-class skynote:
+class skynote(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         # TODO: Make sure this list of extensions is complete.
