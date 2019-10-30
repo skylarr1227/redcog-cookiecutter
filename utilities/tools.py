@@ -1,4 +1,4 @@
-import config
+#import config
 import aiohttp
 from discord import Message, Forbidden, Member, User, TextChannel, Role, utils
 from discord.ext.commands import Context, Bot
