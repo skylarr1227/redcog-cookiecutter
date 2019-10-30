@@ -113,9 +113,8 @@ class Skysave(commands.Cog):
         await self.config.guild(ctx.guild).add_reactions.set(option)
         await ctx.tick()
 
-    @has_active_box()
-    @commands.guild_only() 
-    @commands.command()
+#    @has_active_box()
+    @commands.command(name="skysave")
     async def skysave(
         self,
         ctx,
