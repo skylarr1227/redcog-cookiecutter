@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 from dateutil import tz
 from discord.ext import commands
- 
+from redbot.core import Config, commands, checks
  
 class skynote(commands.Cog):
     def __init__(self, bot):
