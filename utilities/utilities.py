@@ -5,7 +5,7 @@ import string
 import urllib.parse
 import discord
 import requests
-import config
+#import config
 import datetime
 import json
 import os
