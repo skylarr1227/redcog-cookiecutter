@@ -1,6 +1,6 @@
-from .utilities import Utilities
+from .skyutils import Skyutils
 
 
 def setup(bot):
-    cog = Utilities(bot)
+    cog = Skyutils(bot)
     bot.add_cog(cog)
