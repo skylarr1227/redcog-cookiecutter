@@ -159,7 +159,7 @@ class Skysave(commands.Cog):
         elif channel not in channels:
             return await ctx.send(_("Does that look like a proper save destination? Come on... try again."))
 
-        if not suggestion:
+        if not savecontent:
             return await ctx.send(_("Please try again while including something to save"))
 
         perms = channel.permissions_for(ctx.guild.me)
