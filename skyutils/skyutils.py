@@ -29,7 +29,7 @@ class Skyutils(commands.Cog):
     
     
     @commands.command()
-    async def say(self, ctx, *, args: str):
+    async def sayit(self, ctx, *, args: str):
         """
         Edit/Say a message and you can use the silentsay variable as well.
         **FLAGS**:
