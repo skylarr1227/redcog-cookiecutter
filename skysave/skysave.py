@@ -183,7 +183,7 @@ class Skysave(commands.Cog):
             grp = self.config.custom("SUGGESTION", msg.id)
             async with grp.data() as data:
                 data.update(
-                    channel=channel.id, suggestion=suggestion, author=ctx.author.id
+                    channel=channel.id, savecontent=savecontent, author=ctx.author.id
                 )
             self.antispam[ctx.guild][ctx.author].stamp()
             await ctx.send(
