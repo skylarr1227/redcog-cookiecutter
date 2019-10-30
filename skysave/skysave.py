@@ -85,7 +85,7 @@ class Skysave(commands.Cog):
     @sset.command(name="addreactions")
     async def sset_adds_reactions(self, ctx, option: bool = None):
         """
-        sets whether to add reactions to each suggestion
+        sets whether to add reactions to saves
         displays current setting without a provided option.
         off = Don't use reactions
         on = Use reactions
