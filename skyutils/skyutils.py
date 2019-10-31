@@ -14,7 +14,7 @@ import pytz
 
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 #from redbot.core.config import Config
-#from redbot.core import commands, checks
+from redbot.core import commands, checks
 from discord.ext import commands
 from .tools import remove_html, resolve_emoji
 
