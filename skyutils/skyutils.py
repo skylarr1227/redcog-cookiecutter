@@ -30,7 +30,7 @@ class Skyutils(commands.Cog):
 
     @commands.command()
     async def fuckchoices(self, ctx):
-        multiple_choice = BotMultipleChoice(ctx, ['one', 'two', 'three', 'four', 'five', 'six'], "Yeah, fucking fuck fucks")
+        multiple_choice = BotMultipleChoice(ctx, ['one', 'two', 'three', 'four', 'five', 'six'], "How many babys would you eat")
         await multiple_choice.run()
 
         await multiple_choice.quit(multiple_choice.choice)
@@ -49,12 +49,12 @@ class Skyutils(commands.Cog):
 
 
     @commands.command()        
-    async def testmenu(self, ctx):
-        """This is a motherfucking test bitches"""
+    async def helpadv(self, ctx):
+        """Quick reference for Adventure...bitches """
         embeds = [
-            Embed(title="Fuck", description="Uhh Im not really sure what\nto put here in this test\nlike wtf", color=0x115599),
-            Embed(title="This shit", description="Uhh Im not really sure what\nto put here in this test\nlike wtf", color=0x5599ff),
-            Embed(title="Worked!!!!", description="Uhh Im not really sure what\nto put here in this test\nlike wtf?", color=0x191638)
+            Embed(title="Quick Reference for Skybot", description="__**+adventure**__\nStart an adventure in your current channel\n__**+stats**__\nTo view your character sheet as well as\nyour currently equipped items.\n**__+loot___**\n", color=0x115599),
+            Embed(title="Quick Reference cont. Loot", description="__**+combine**__\nCombiine your loot boxes by specifying type you wish to convert", color=0x5599ff),
+            Embed(title="Quick Reference cont. Hero-classes", description="```+heroclass\n   -Bard\n   -Wizard\n   -Ramger\n   -Beserker\n   -Cleric```", color=0x191638)
         ]
 
         paginator = BotEmbedPaginator(ctx, embeds)
@@ -65,7 +65,7 @@ class Skyutils(commands.Cog):
     async def sayit(self, ctx, *, args: str):
         """
         Edit/Say a message and you can use the silentsay variable as well.
-        **FLAGS**:
+        **FLAGS**:``
             If you use `--s` as a flag, your arguments are simply what you want the bot to say and have it remove your message afterwards.
             If you use `--e` as a flag, the arguments are the message id you want to edit and the new content.
             If no flag is passed, the bot will simply send the message like normal excluding the actual command."""
