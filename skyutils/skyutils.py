@@ -12,6 +12,7 @@ import os
 import urllib
 import pytz
 
+from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 from redbot.core.config import Config
 from redbot.core import commands, checks
 #from discord.ext import commands
@@ -137,6 +138,19 @@ class Skyutils(commands.Cog):
                 await ctx.send(resolve_emoji('ERROR', ctx) + " No results found.")
         else:
             await ctx.send(resolve_emoji('ERROR', ctx) + " No results found.")
+            
+    @commands.command()        
+    async def testmenu(ctx):
+        """This is a motherfucking test bitches"""
+        embeds = [
+            Embed(title="Fuck", description="Uhh Im not really sure what\nto put here in this test\nlike wtf", color=0x115599),
+            Embed(title="This shit", description="Uhh Im not really sure what\nto put here in this test\nlike wtf", color=0x5599ff),
+            Embed(title="Worked!!!!", description="Uhh Im not really sure what\nto put here in this test\nlike wtf?", color=0x191638)
+        ]
+
+        paginator = BotEmbedPaginator(ctx, embeds)
+        await paginator.run()
+            
             
 def setup(bot):
     bot.add_cog(Skyutils(bot))
