@@ -20,6 +20,7 @@ from .tools import remove_html, resolve_emoji
 
 bot = commands.Bot
 BaseCog = getattr(commands, "Cog", object)
+Embed = discord.Embed
 
 
 class Skyutils(commands.Cog):
