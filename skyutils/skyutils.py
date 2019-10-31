@@ -27,6 +27,27 @@ class Skyutils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
    
+
+    @commands.command()
+    async def fuckchoices(self, ctx):
+        multiple_choice = BotMultipleChoice(ctx, ['one', 'two', 'three', 'four', 'five', 'six'], "Yeah, fucking fuck fucks")
+        await multiple_choice.run()
+
+        await multiple_choice.quit(multiple_choice.choice)
+
+
+
+    @commands.command()
+    async def testconfirm(self, ctx):
+        confirmation = BotConfirmation(ctx, 0x012345)
+        await confirmation.confirm("So... yes, you want to pledge your eternal soul to Sky to help raise her undead army??")
+
+        if confirmation.confirmed:
+            await confirmation.update("Confirmed", color=0x55ff55)
+        else:
+            await confirmation.update("Not confirmed", hide_author=True, color=0xff5555)
+
+
     @commands.command()        
     async def testmenu(self, ctx):
         """This is a motherfucking test bitches"""
