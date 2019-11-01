@@ -110,6 +110,17 @@ class Skyembed(commands.Cog):
         await ctx.send(embed=embed)
     
     
+    @commands.command(name='showdown', description='Links and info about Skys Pokemon showdown server')
+    async def showdown_help(self, ctx):
+        embed = discord.Embed(title="Sky's Private Pokemon Showdown Server", colour=discord.Colour(0x12bdca), description="Heres the link for Sky's showdown server!!!")
+
+        embed.set_thumbnail(url="https://pokepla.net/epic.gif")
+        embed.set_author(name="Click here for Showdown", url="https://pokepla.net", icon_url="https://pokepla.net/epic2.gif")
+        embed.set_footer(text="Suggestions on how to make this better? DM Skylarr#6666!!", icon_url="https://pokepla.net/epic2.gif")
+        await ctx.send(embed=embed)
+        
+        
+         
     @commands.command(name='rhelp', description='Help menu for users +Rank Display')
     async def rank_help(self, ctx):
         embed = discord.Embed(title="Skybot's Leveling System", colour=discord.Colour(0x12bdca), description="For help with other display options within the leveler system see: `\n+lvlhelp`")
@@ -124,6 +135,8 @@ class Skyembed(commands.Cog):
         embed.add_field(name="Set Rank Color Overlay [not recommended]", value="```+setrcolor [0x52345]```")
 
         await ctx.send(embed=embed)
+        
+        
 
     @commands.command(
         name='sembed',
