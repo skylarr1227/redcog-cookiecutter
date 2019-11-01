@@ -115,7 +115,7 @@ class Skyembed(commands.Cog):
         embed = discord.Embed(title="Sky's Private Pokemon Showdown Server", colour=discord.Colour(0x12bdca), description="Heres the link for Sky's showdown server!!!")
 
         embed.set_thumbnail(url="https://pokepla.net/epic.gif")
-        embed.set_author(name="Click here for Showdown", url="https://pokepla.net", icon_url="https://pokepla.net/epic2.gif")
+        embed.set_author(name="Click here for Showdown", url="https://pokepla.net", icon_url="https://go.goodguitarist.com/hosted/images/78/538b29231e4c1ab2c02cb6b8dc24b1/blue-arrows-flashing.gif")
         embed.set_footer(text="Suggestions on how to make this better? DM Skylarr#6666!!", icon_url="https://pokepla.net/epic2.gif")
         await ctx.send(embed=embed)
         
