@@ -60,5 +60,37 @@ class invitegen(commands.Cog):
         await ctx.send(link)
         
         
+    @commands.command(name='makeinvite', description='create invite for specified server)
+    async def invite(self, ctx, guild=None):
+        """
+        Creates an invite to a specified server
+        """
+        guild_names = list("{} - ID: {}".format(g.name, g.id) for g in self.bot.guilds)
+        if guild is None:
+            guild = await reaction_menu.start_reaction_menu(self.bot, guild_names, ctx.author, ctx.channel, count=1,
+                                                            timeout=60, per_page=10, header=header,
+                                                            return_from=self.bot.guilds, allow_none=True)
+            guild = guild[0]
+        else:
+            guild = discord.utils.find(lambda s: s.name == guild or str(s.id) == guild, self.bot.guilds)
+            if guild is None:
+                await ctx.send("`Unable to locate guild`")
+                return
+
+        for channel in guild.channels:
+            if isinstance(channel, discord.TextChannel):
+                try:
+                    invite = await channel.create_invite()
+                    await ctx.send("`Created an invite to guild, I will DM it to you`")
+                    dm_channel = ctx.author.dm_channel
+                    if dm_channel is None:
+                        dm_channel = await ctx.author.create_dm()
+                    await dm_channel.send(invite.url)
+                    break
+                except discord.HTTPException:
+                    await ctx.send("`Failed to create invite for guild!`") 
+
+
+
 def setup(bot):
     bot.add_cog(invitegen(Bot))
