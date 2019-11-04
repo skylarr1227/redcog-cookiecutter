@@ -55,5 +55,5 @@ class CustomChannels(BaseCog):
 
         
         
- def setup(bot):
-    bot.add_cog(CustomChannels(Bot))
+    def setup(bot):
+        bot.add_cog(CustomChannels(Bot))
