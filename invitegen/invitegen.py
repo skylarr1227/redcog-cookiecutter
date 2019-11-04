@@ -5,12 +5,9 @@ import re
 import asyncio
 import time
 import sys
-from redbot.core import Config, commands, checks
-from redbot.core import bank
-from redbot.core import checks
-from redbot.core import commands
+from redbot.core import commands, checks, Config, bank
+from redbot.core.utils.chat_formatting import box, humanize_list, pagify
 from redbot.core.data_manager import bundled_data_path
-from redbot.core.utils.chat_formatting import pagify, box
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.predicates import MessagePredicate
 
@@ -58,8 +55,10 @@ class invitegen(commands.Cog):
         """Create instant invite"""
         link = await ctx.channel.create_invite(message.channel_id, max_age = 300)
         await ctx.send(link)
-        
-        
+    
+    
+    @commands.guild_only()    
+    @checks.mod_or_permissions(administrator=True)    
     @commands.command(name='makeinvite', description='create invite for specified server')
     async def invite(self, ctx, guild=None):
         """
