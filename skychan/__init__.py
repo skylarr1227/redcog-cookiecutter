@@ -1,4 +1,4 @@
-from .skychannel import CustomChannels
+from .Skychannel import CustomChannels
 
 
 def setup(bot):
