@@ -52,3 +52,8 @@ class CustomChannels(BaseCog):
         '''Leave a private channel'''
         await self.core.config.guild(context.guild).clear()
         await context.send('cleared')
+
+        
+        
+ def setup(bot):
+    bot.add_cog(CustomChannels(Bot))
