@@ -145,31 +145,7 @@ class Skyutils(commands.Cog):
         em.timestamp = datetime.datetime.now()
         await ctx.send(embed=em)
         
-    @commands.command()
-    async def define(self, ctx, word: str):
-        """Define a word."""
-        r = requests.get('http://api.pearson.com/v2/dictionaries/laes/entries?headword=' + word)
-        js = r.json()
-        if len(js['results']) > 0:
-            try:
-                define = js['results'][0]['senses'][0]['definition'][0]
-                pos = js['results'][0]['part_of_speech']
-                ex = js['results'][0]['senses'][0]['translations'][0]['example'][0]['text']
-                word = js['results'][0]['headword']
-                em = discord.Embed(description="**Part Of Speech:** `{1}`\n**Headword:** `{0}`".format(word, pos),
-                                   color=0x8181ff)
-                em.set_thumbnail(url="https://www.shareicon.net/download/2016/05/30/575440_dictionary_512x512.png")
-                em.set_footer(
-                    text="Requested by {} | Powered by http://api.pearson.com/".format(str(ctx.message.author)))
-                em.add_field(name="Definition", value="**{}**".format(define))
-                em.add_field(name="Example", value="**{}**".format(ex))
-                em.set_author(name="Definition for {}".format(word),
-                              icon_url=ctx.message.author.avatar_url.replace('?size=1024', ''))
-                await ctx.send(embed=em)
-            except KeyError:
-                await ctx.send(resolve_emoji('ERROR', ctx) + " No results found.")
-        else:
-            await ctx.send(resolve_emoji('ERROR', ctx) + " No results found.")
+  
             
  
             
