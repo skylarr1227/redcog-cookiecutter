@@ -60,7 +60,7 @@ class invitegen(commands.Cog):
         await ctx.send(link)
         
         
-    @commands.command(name='makeinvite', description='create invite for specified server)
+    @commands.command(name='makeinvite', description='create invite for specified server')
     async def invite(self, ctx, guild=None):
         """
         Creates an invite to a specified server
