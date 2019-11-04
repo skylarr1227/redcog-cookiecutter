@@ -5,7 +5,6 @@ import re
 import asyncio
 import time
 import sys
-from reaction_menu import reaction_menu
 from redbot.core import Config, commands, checks
 from redbot.core import bank
 from redbot.core import checks
