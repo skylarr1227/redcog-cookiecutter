@@ -10,7 +10,7 @@ class CustomChannels(BaseCog):
         self.bot = bot
         self.core = CustomChannelsCore(self.bot)
 
-    @commands.group(name='customchannels', aliases=['cc'])
+    @commands.group(name='customchannels', aliases=['chan'])
     async def customchannels(self, context):
         '''Let users make custom channels'''
 
