@@ -1,5 +1,5 @@
 import discord
-from redbot.core import commands
+from redbot.core import commands, checks, Config, bank
 
 from .core import CustomChannelsCore
 
@@ -11,6 +11,7 @@ class CustomChannels(BaseCog):
         self.core = CustomChannelsCore(self.bot)
 
     @commands.group(name='customchannels', aliases=['chan'])
+    @checks.mod_or_permissions(administrator=True)   
     async def customchannels(self, context):
         '''Let users make custom channels'''
 
@@ -24,8 +25,9 @@ class CustomChannels(BaseCog):
         '''Set the category in which you want all custom channels to be placed in.'''
         message = await self.core.customchannels_set_category(context, category)
         await context.send(message)
-
+        
     @customchannels.group(name='public')
+    @checks.mod_or_permissions(administrator=True)   
     async def customchannels_public(self, context, *, channel_name: str):
         '''Open a public channel'''
         message = await self.core.customchannels_public(context, channel_name)
