@@ -11,6 +11,9 @@ import json
 import os
 import urllib
 import pytz
+import io
+import aiohttp
+import async_timeout
 
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 from redbot.core.config import Config
