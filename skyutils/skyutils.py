@@ -147,7 +147,30 @@ class Skyutils(commands.Cog):
         
   
             
- 
+    @commands.command(aliases=['temote', 'bemote', 'dcemote', 'getemote', 'fetchemote'])
+    async def findemote(self, ctx, emote: str):
+        """Get a Twitch, FrankerFaceZ, BetterTTV, or Discord emote.
+        Usage: emote [name of emote]"""
+        emote = emote.replace(':', '')
+        with async_timeout.timeout(13):
+            try:
+                async with self.bot.cog_http.get('https://static-cdn.jtvnw.net/emoticons/v1/' + str(self.bot.emotes['twitch'][emote]['image_id']) + '/1.0') as resp:
+                    emote_img = await resp.read()
+            except KeyError: # let's try frankerfacez
+                try:
+                    async with self.bot.cog_http.get('https://cdn.frankerfacez.com/emoticon/' + str(self.bot.emotes['ffz'][emote]) + '/1') as resp:
+                        emote_img = await resp.read()
+                except KeyError: # let's try BetterTTV
+                    try:
+                        async with self.bot.cog_http.get(self.bot.emotes['bttv'][emote]) as resp:
+                            emote_img = await resp.read()
+                    except KeyError: # let's try Discord
+                        await ctx.send('**No such emote!** I can fetch from Twitch, FrankerFaceZ, BetterTTV, or Discord (soon).')
+                        return False
+        img_bytes = io.BytesIO(emote_img)
+        ext = imghdr.what(img_bytes)
+        await ctx.send(file=discord.File(img_bytes, f'emote.{ext}'))
+
             
             
 def setup(bot):
