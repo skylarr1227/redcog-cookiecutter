@@ -355,9 +355,22 @@ class Skyutils(commands.Cog):
     @_server.command(pass_context=True, no_pm=True)
     async def channelcount(self, ctx):
         """Counts the users"""
-        chans = ctx.message.server.channels
-        textchans = [x for x in ctx.message.server.channels if x.type == discord.ChannelType.text]
-        voicechans = [x for x in ctx.message.server.channels if x.type == discord.ChannelType.voice]
+        if server is None:
+            server = ctx.guild
+        else:
+            server = discord.utils.get(self.bot.guilds, id=server)
+        if server is None:
+            await ctx.send(_("Failed to get server with provided ID"))
+            return
+        categories = "\n".join(
+            [chat.escape(x.name, formatting=True) for x in server.categories]
+        ) or _("No categories")
+        text_channels = "\n".join(
+            [chat.escape(x.name, formatting=True) for x in server.text_channels]
+        ) or _("No text channels")
+        voice_channels = "\n".join(
+            [chat.escape(x.name, formatting=True) for x in server.voice_channels]
+        ) or _("No voice channels")
         await self.bot.send_message(ctx.message.channel, embed=discord.Embed(title="Server Channelcount", description="{}, there are currently **{}** text channels and **{}** voice channels with a total of **{}** channels in this server.".format(ctx.message.author.mention, len(textchans), len(voicechans), len(chans)), colour=0X008CFF))
             
     @_server.command(pass_context=True, no_pm=True)
