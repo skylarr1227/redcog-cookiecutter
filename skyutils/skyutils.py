@@ -316,7 +316,7 @@ class Skyutils(commands.Cog):
             await self.bot.say("An unknown error occured while sending the embedded message.")
 
     @_server.command(pass_context=True, no_pm=True)
-    async def channelinfo(self, ctx, channel : discord.Channel = None):
+    async def channelinfo(self, ctx, channel: Union[discord.TextChannel, discord.VoiceChannel, discord.CategoryChannel, None] = None):
         """Gives you some channel information."""
         if channel == None:
             channel = ctx.message.channel
