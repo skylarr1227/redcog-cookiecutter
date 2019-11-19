@@ -15,6 +15,7 @@ import io
 import aiohttp
 import async_timeout
 
+from typing import Union
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 from redbot.core.config import Config
 from redbot.core import commands, checks
