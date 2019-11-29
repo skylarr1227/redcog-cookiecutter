@@ -1,8 +1,11 @@
 import discord
 import datetime
 import operator
+from discord.ext import commands
+#from redbot.core import commands, checks
 
-from redbot.core import commands, checks
+bot = commands.Bot
+BaseCog = getattr(commands, "Cog", object)
 
 class Skychallenge(commands.Cog):
     def __init__(self, bot):
