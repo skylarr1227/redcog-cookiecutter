@@ -1,4 +1,4 @@
-from .skychallenge import Skychallenge
+from .Skychallenge import challenge
 
 
 def setup(bot):
