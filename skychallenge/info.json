@@ -1,0 +1,12 @@
+ 
+{
+    "author": ["Sky"],
+    "install_msg": "Thank you for installing Sky's Challenge cog for server scored tournaments/challenges!",
+    "name": "SkyChallenge",
+    "disabled": false,
+    "short": "Customizable score keeping cog for challenges/tournaments",
+    "description": "cog ported to red by Sky with muchomuchomucho <33333",
+    "tags": [],
+    "requirements": [],
+    "hidden": false
+}
