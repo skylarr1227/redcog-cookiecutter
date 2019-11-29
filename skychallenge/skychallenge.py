@@ -4,7 +4,7 @@ import operator
 from discord.ext import commands
 #from redbot.core import commands, checks
 
-bot = commands.Bot
+bot = commands.Cog
 BaseCog = getattr(commands, "Cog", object)
 
 class Skychallenge(commands.Cog):
