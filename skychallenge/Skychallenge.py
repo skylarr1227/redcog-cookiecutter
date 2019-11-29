@@ -38,7 +38,7 @@ class challenge(commands.Cog):
                 await ctx.send("An error occured. Please check your command to ensure correctness.")
         
         @commands.command()
-        async def challenge(ctx, num, answer):  # This is the command for submitting a flag for points, num is the challenge number, answer is the flag
+        async def ch(ctx, num, answer):  # This is the command for submitting a flag for points, num is the challenge number, answer is the flag
             try:
                 sender = str(ctx.message.author)  # makes it easier to get user in the future. In format of username#numbers
                 ID = str(ctx.message.author.id)
@@ -236,4 +236,4 @@ class challenge(commands.Cog):
                 await ctx.send("An error occured while posting the leaderboard. This is most likely because the leaderboard is empty. Enter some scores!")
                 
         def setup(bot):
-            bot.add_cog(Skychallenge(bot))
+            bot.add_cog(challenge(bot))
