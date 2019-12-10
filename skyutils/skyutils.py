@@ -93,7 +93,17 @@ class Skyutils(commands.Cog):
 
         
   
-            
+    @commands.command()
+    async def pfp(self, ctx, *, member: Union[discord.Member, NonGuildUser] = None):
+        """Displays a user's avatar."""
+        if member is None:
+            member = ctx.author
+        embed = discord.Embed(color=discord.Color.blue(),
+                              description=f"[Link to Avatar]({member.avatar_url_as(static_format='png')})")
+        embed.set_author(name=f"{member.name}\'s Avatar")
+        embed.set_image(url=member.avatar_url)
+        await ctx.send(embed=embed)
+        
 
    
             
