@@ -94,7 +94,7 @@ class Skyutils(commands.Cog):
         
   
     @commands.command()
-    async def pfp(self, ctx, *, member: Union[discord.Member, NonGuildUser] = None):
+    async def pfp(self, ctx, *, member: discord.Member = None):
         """Displays a user's avatar."""
         if member is None:
             member = ctx.author
