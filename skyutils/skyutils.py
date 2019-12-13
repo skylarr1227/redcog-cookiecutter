@@ -105,8 +105,15 @@ class Skyutils(commands.Cog):
         await ctx.send(embed=embed)
         
 
-   
-            
+     @commands.command()
+     def nick(self, ctx, *, nick: str):
+        """Set your nickname.
+        Usage: nick [new nickname]"""
+        if ctx.author.guild_permissions.change_nickname:
+            await ctx.author.edit(nick=nick, reason='User requested using command')
+            await ctx.send(':thumbsup: Done.')
+        else:
+            await ctx.send(':x: You don\'t have permission to change your nickname.')      
             
 def setup(bot):
     bot.add_cog(Skyutils(bot))
