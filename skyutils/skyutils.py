@@ -105,8 +105,8 @@ class Skyutils(commands.Cog):
         await ctx.send(embed=embed)
         
 
-     @commands.command()
-     def nick(self, ctx, *, nick: str):
+    @commands.command()
+    def nick(self, ctx, *, nick: str):
         """Set your nickname.
         Usage: nick [new nickname]"""
         if ctx.author.guild_permissions.change_nickname:
