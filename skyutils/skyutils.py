@@ -106,7 +106,7 @@ class Skyutils(commands.Cog):
         
 
     @commands.command()
-    def nick(self, ctx, *, nick: str):
+    async def nick(self, ctx, *, nick: str):
         """Set your nickname.
         Usage: nick [new nickname]"""
         if ctx.author.guild_permissions.change_nickname:
