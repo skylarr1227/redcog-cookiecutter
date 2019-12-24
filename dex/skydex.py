@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands
+from redbot.core import commands, checks, Config, bank
 import aiohttp
 import random
 from bs4 import BeautifulSoup
