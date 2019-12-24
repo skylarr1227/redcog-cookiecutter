@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from ext.paginator import PaginatorSession
 
 
-class Pokedex:
+class Skydex:
     '''Pokedex Functions, will be expanded upon<3'''
 
     def __init__(self, bot):
