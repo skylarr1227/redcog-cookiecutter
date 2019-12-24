@@ -1,12 +1,14 @@
 {
-    "author": ["Skylarr"],
-    "install_msg": "This cog was made by skylarr#6666, thanks for installing it.",
-    "name": "dem-permissions cog",
-    "disabled": false,
-    "short": "Skys fucklog cog",
-    "description": "cogs made by Skylarr#6666",
-    "tags": [],
-    "requirements": [],
-    "hidden": false
-}
-
+    "author": [
+        "Sky (Skylarr)",
+        "Help from Foreboding, and Sujay"
+    ],
+    "install_msg": "Stuff that pleases me!",
+    "name": "Sky's Cogs",
+    "short": "Handful of shit",
+    "description": "if you name is Aidan, gtfo",
+    "tags": [
+        "Utility",
+        "Moderation"
+    ]
+}#
