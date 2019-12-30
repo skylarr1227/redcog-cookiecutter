@@ -27,6 +27,33 @@ with open('configs/config.json') as json_data:
 	error_string = response_json['response_string']['error']
 	del response_json
 
+def personal_embed(db_response, author):
+    	if isinstance(author, discord.Member) and author.color != discord.Colour.default():
+		embed = discord.Embed(description = db_response[2], color = author.color)
+	else:
+		embed = discord.Embed(description = db_response[2])
+		embed.set_author(name = str(author), icon_url = author.avatar_url)
+	if db_response[3] != None:
+		attachments = db_response[3].split(' | ')
+		if len(attachments) == 1 and (attachments[0].lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.gifv', '.webp', '.bmp')) or attachments[0].lower().startswith('https://chart.googleapis.com/chart?')):
+			embed.set_image(url = attachments[0])
+		else:
+			attachment_count = 0
+			for attachment in attachments:
+				attachment_count+=1
+				embed.add_field(name = 'Attachment ' + str(attachment_count), value = attachment, inline = False)
+				embed.set_footer(text = 'Personal Quote')
+   		                return embed
+
+def list_embed(list_personals, author, page_number):
+	if isinstance(author, discord.Member) and author.color != discord.Colour.default():
+		embed = discord.Embed(description = '\n'.join(['• `' + i[1] + '`' for i in list_personals]), color = author.color)
+	else:
+		embed = discord.Embed(description = '\n'.join(['• `' + i[1] + '`' for i in list_personals]))
+	embed.set_author(name = 'Personal Quotes', icon_url = author.avatar_url)
+	embed.set_footer(text = 'Page: ' + str(page_number))
+	return embed
+
 def quote_embed(context_channel, message, user):
 	if not message.content and message.embeds and message.author.bot:
 		embed = message.embeds[0]
@@ -304,32 +331,7 @@ class QuoteIT(commands.Cog):
 		await ctx.send(content = '```fix\n' + discord.utils.snowflake_time(snowflake).strftime('%A %Y/%m/%d %H:%M:%S UTC') + '\n```')
 
 	
-def personal_embed(db_response, author):
-    	if isinstance(author, discord.Member) and author.color != discord.Colour.default():
-		embed = discord.Embed(description = db_response[2], color = author.color)
-	else:
-		embed = discord.Embed(description = db_response[2])
-		embed.set_author(name = str(author), icon_url = author.avatar_url)
-	if db_response[3] != None:
-		attachments = db_response[3].split(' | ')
-		if len(attachments) == 1 and (attachments[0].lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.gifv', '.webp', '.bmp')) or attachments[0].lower().startswith('https://chart.googleapis.com/chart?')):
-			embed.set_image(url = attachments[0])
-		else:
-			attachment_count = 0
-			for attachment in attachments:
-				attachment_count+=1
-				embed.add_field(name = 'Attachment ' + str(attachment_count), value = attachment, inline = False)
-				embed.set_footer(text = 'Personal Quote')
-   		return embed
 
-def list_embed(list_personals, author, page_number):
-	if isinstance(author, discord.Member) and author.color != discord.Colour.default():
-		embed = discord.Embed(description = '\n'.join(['• `' + i[1] + '`' for i in list_personals]), color = author.color)
-	else:
-		embed = discord.Embed(description = '\n'.join(['• `' + i[1] + '`' for i in list_personals]))
-	embed.set_author(name = 'Personal Quotes', icon_url = author.avatar_url)
-	embed.set_footer(text = 'Page: ' + str(page_number))
-	return embed
 
 class PersonalQuotes(commands.Cog):
 	def __init__(self, bot):
