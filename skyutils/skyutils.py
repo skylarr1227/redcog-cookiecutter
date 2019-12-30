@@ -116,7 +116,7 @@ class Skyutils(commands.Cog):
     @checks.has_permissions(manage_messages=True)
     @commands.bot_has_permissions(embed_links=True)
     @commands.command()
-    async def eventmsg(self, ctx, color:Optional[discord.Color]=None, *, text, title):
+    async def eventmsg(self, ctx, color:Optional[discord.Color]=None, *, title:Optional[str]=None, text):
         """
         Send an embed for a special event
 
@@ -128,7 +128,7 @@ class Skyutils(commands.Cog):
         if color is None:
             color = await ctx.embed_color()
         embed = discord.Embed(
-            title=title,
+            title=,
             description=text,
             color=color
            
