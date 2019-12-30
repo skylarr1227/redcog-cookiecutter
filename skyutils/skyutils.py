@@ -140,7 +140,7 @@ class Skyutils(commands.Cog):
         await msg.add_reaction(emoji)
         reaction, user = await self.bot.wait_for('reaction_add', check=check)
        # await ctx.channel.send (str(user))
-        await ctx.delete_message(ctx.message)
+        await self.bot.delete_message(ctx.message)
         await ctx.send(f"<@{str(user.id)}> clicked the reaction first! Better luck next time everyone else")
       #  await ctx.delete(msg)
             
