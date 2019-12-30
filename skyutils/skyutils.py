@@ -168,7 +168,7 @@ class Skyutils(commands.Cog):
         await msg.add_reaction(emoji)
         reaction, user = await self.bot.wait_for('reaction_add', check=check)
        # await ctx.channel.send (str(user))
-        ctx.send(f" Congrats! <@{str(user.id)}>")
+        awaitf ctx.send(f" Congrats! <@{str(user.id)}>")
             
            
     @commands.command(pass_context=True)
