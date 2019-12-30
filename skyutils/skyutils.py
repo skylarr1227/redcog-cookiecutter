@@ -128,7 +128,7 @@ class Skyutils(commands.Cog):
         if color is None:
             color = await ctx.embed_color()
         embed = discord.Embed(
-            title=,
+            title=title,
             description=text,
             color=color
            
