@@ -188,7 +188,7 @@ class Skyutils(commands.Cog):
             for v in nicknames:
                 writer.writerow([v])
                 after = time.time()
-                await bot.send_file(ctx.message.author, 'temp.csv', filename='stats.csv',
+                await ctx.send_file(ctx.message.author, 'temp.csv', filename='stats.csv',
                                     content="Sent to your dms. Generated in {:.4}ms.".format((after - before)*1000))
     
     
