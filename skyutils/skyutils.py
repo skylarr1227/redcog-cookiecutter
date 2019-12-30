@@ -180,15 +180,15 @@ class Skyutils(commands.Cog):
     @commands.command(pass_context=True)
     async def memberlog(ctx):
         """Returns a CSV file of all users on the server."""
-        await self.bot.request_offline_members(ctx.message.server)
+        await self.bot.request_offline_members(ctx.message.guild)
         before = time.time()
-        nicknames = [m.display_name for m in ctx.message.server.members]
+        nicknames = [m.display_name for m in ctx.message.guild.members]
         with open('temp.csv', mode='w', encoding='utf-8', newline='') as f:
             writer = csv.writer(f, dialect='excel')
             for v in nicknames:
                 writer.writerow([v])
                 after = time.time()
-                await ctx.send_file(ctx.message.author, 'temp.csv', filename='stats.csv',
+                await self.bot.send_file(ctx.message.author, 'temp.csv', filename='stats.csv',
                                     content="Sent to your dms. Generated in {:.4}ms.".format((after - before)*1000))
     
     
