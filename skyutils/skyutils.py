@@ -129,7 +129,7 @@ class Skyutils(commands.Cog):
             color = await ctx.embed_color()
         embed = discord.Embed(description=text, color=color)
         embed.set_footer(text="Be the first to Click the Firework reaction!!!", icon_url="https://pokepla.net/epic2.gif")
-        embed.set_author(name="Event Title here", icon_url=https://66.media.tumblr.com/f2c3cb58e5df9b083bb4db24bf7f065a/tumblr_mney5aJkmu1s5jjtzo1_r1_400.gif)
+        embed.set_author(name="Event Title here", icon_url="https://66.media.tumblr.com/f2c3cb58e5df9b083bb4db24bf7f065a/tumblr_mney5aJkmu1s5jjtzo1_r1_400.gif")
         msg=await ctx.send(embed=embed)
         def check(reaction, user):
             if user.bot:
