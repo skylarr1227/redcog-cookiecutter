@@ -15,7 +15,7 @@ import io
 import aiohttp
 import async_timeout
 
-from typing import Union
+from typing import Union, Optional
 from disputils import BotEmbedPaginator, BotConfirmation, BotMultipleChoice
 from redbot.core.config import Config
 from redbot.core import commands, checks
@@ -137,8 +137,45 @@ class Skyutils(commands.Cog):
                     await message.channel.send(str(int(msgshit[0])**int(msgshit[2])))
                 else:
                     print('whatever')
-                
 
+    
+    @checks.has_permissions(manage_messages=True)
+    @commands.bot_has_permissions(embed_links=True)
+    @commands.command()
+    async def eventmsg(self, ctx, color:Optional[discord.Color]=None, *, text):
+        """
+        Send an embed for a special event
+
+        Use the optional parameter color to change the color of the embed.
+        The embed will contain the text text.
+        All normal discord formatting will work inside the embed. 
+        """
+        emoji = discord.utils.get(self.bot.emojis, id=610290433725169703)
+        if color is None:
+            color = await ctx.embed_color()
+        embed = discord.Embed(
+            description=text,
+            color=color
+        )
+        
+        msg=await ctx.send(embed=embed)
+        def check(reaction, user):
+            if user.bot:
+                return False
+            if not (reaction.message.id == msg.id and reaction.emoji.id == emoji.id):
+               return False
+            return True
+        await msg.add_reaction(emoji)
+        reaction, user = await self.bot.wait_for('reaction_add', check=check)
+        j=3
+        while j>0:
+            await asyncio.sleep(1)
+            await ctx.send(str(j))
+            j=j-1
+        output = '\n'.join(f"{r.emoji}: {r.count}" for r in msg.reactions)
+        for o in output:
+            await ctx.send(o)
+    
            
     @commands.command(pass_context=True)
     async def memberlog(ctx):
@@ -153,6 +190,9 @@ class Skyutils(commands.Cog):
                 after = time.time()
                 await bot.send_file(ctx.message.author, 'temp.csv', filename='stats.csv',
                                     content="Sent to your dms. Generated in {:.4}ms.".format((after - before)*1000))
+    
+    
+    
                    
 def setup(bot):
     bot.add_cog(Skyutils(bot))
