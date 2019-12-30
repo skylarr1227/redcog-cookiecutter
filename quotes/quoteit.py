@@ -50,7 +50,7 @@ def quote_embed(context_channel, message, user):
 			embed.set_footer(text = 'Quoted by: ' + str(user))
 	return embed
 
-class Main(commands.Cog):
+class QuoteIT(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
@@ -398,4 +398,4 @@ class PersonalQuotes(commands.Cog):
  
 
 def setup(bot):
-	bot.add_cog(Main(bot))
+	bot.add_cog(quoteit(bot))
