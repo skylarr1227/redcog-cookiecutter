@@ -44,12 +44,12 @@ class Skyutils(commands.Cog):
     @commands.command()
     async def testconfirm(self, ctx):
         confirmation = BotConfirmation(ctx, 0x012345)
-        await confirmation.confirm("So... yes, you want to pledge your eternal soul to Sky to help raise her undead army??")
+        await confirmation.confirm("Do you have any event ideas that you would like to contribute?")
 
         if confirmation.confirmed:
-            await confirmation.update("Confirmed", color=0x55ff55)
+            await confirmation.update("Yes", color=0x55ff55)
         else:
-            await confirmation.update("Not confirmed", hide_author=True, color=0xff5555)
+            await confirmation.update("No", hide_author=True, color=0xff5555)
 
 
     @commands.command()        
@@ -63,33 +63,7 @@ class Skyutils(commands.Cog):
 
         paginator = BotEmbedPaginator(ctx, embeds)
         await paginator.run()
-    
-    
-    
-            
-            
-
-    @commands.command()
-    async def add(self, ctx, left: int, right: int):
-        """Dem math probs with the + in em"""
-        await ctx.send(left + right)
-
-    @commands.command()
-    async def subtract(self, ctx, left: int, right: int):
-        """For all those times you can't be bothered with
-        how many apples Jake has after little Timmy used 6
-        to throw at the kids doing their math homework"""
-        await ctx.send(left - right)
-
-    @commands.command()
-    async def multiply(self, ctx, left: int, right: int):
-        """fuck a calculator, skybot is here baby"""
-        await ctx.send(left * right)
-
-    @commands.command()
-    async def divide(self, ctx, left: int, right: int):
-        """Division is for nerds"""
-        await ctx.send(left / right)
+  
 
         
   
@@ -142,7 +116,7 @@ class Skyutils(commands.Cog):
     @checks.has_permissions(manage_messages=True)
     @commands.bot_has_permissions(embed_links=True)
     @commands.command()
-    async def eventmsg(self, ctx, color:Optional[discord.Color]=None, *, text):
+    async def eventmsg(self, ctx, color:Optional[discord.Color]=None, *, text, title):
         """
         Send an embed for a special event
 
@@ -154,8 +128,10 @@ class Skyutils(commands.Cog):
         if color is None:
             color = await ctx.embed_color()
         embed = discord.Embed(
+            title=title,
             description=text,
             color=color
+           
         )
         
         msg=await ctx.send(embed=embed)
@@ -173,19 +149,19 @@ class Skyutils(commands.Cog):
       #  await ctx.delete(msg)
             
            
-    @commands.command(pass_context=True)
-    async def memberlog(ctx):
-        """Returns a CSV file of all users on the server."""
-        await self.bot.request_offline_members(ctx.message.server)
-        before = time.time()
-        nicknames = [m.display_name for m in ctx.message.server.members]
-        with open('temp.csv', mode='w', encoding='utf-8', newline='') as f:
-            writer = csv.writer(f, dialect='excel')
-            for v in nicknames:
-                writer.writerow([v])
-                after = time.time()
-                await bot.send_file(ctx.message.author, 'temp.csv', filename='stats.csv',
-                                    content="Sent to your dms. Generated in {:.4}ms.".format((after - before)*1000))
+    #@commands.command(pass_context=True)
+    #async def memberlog(ctx):
+    #    """Returns a CSV file of all users on the server."""
+    #    await self.bot.request_offline_members(ctx.message.server)
+    #    before = time.time()
+    #    nicknames = [m.display_name for m in ctx.message.server.members]
+    #    with open('temp.csv', mode='w', encoding='utf-8', newline='') as f:
+    #        writer = csv.writer(f, dialect='excel')
+    #        for v in nicknames:
+    #            writer.writerow([v])
+    #            after = time.time()
+    #            await bot.send_file(ctx.message.author, 'temp.csv', filename='stats.csv',
+    #                                content="Sent to your dms. Generated in {:.4}ms.".format((after - before)*1000))
     
     
     
