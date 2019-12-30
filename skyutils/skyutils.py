@@ -167,28 +167,21 @@ class Skyutils(commands.Cog):
             return True
         await msg.add_reaction(emoji)
         reaction, user = await self.bot.wait_for('reaction_add', check=check)
-        j=3
-        while j>0:
-            await asyncio.sleep(1)
-            await ctx.send(str(j))
-            j=j-1
-        output = '\n'.join(f"{r.emoji}: {r.count}" for r in msg.reactions)
-        for o in output:
-            await ctx.send(o)
-    
+        await message.channel.send (str(user))
+            
            
     @commands.command(pass_context=True)
     async def memberlog(ctx):
         """Returns a CSV file of all users on the server."""
-        await self.bot.request_offline_members(ctx.message.guild)
+        await self.bot.request_offline_members(ctx.message.server)
         before = time.time()
-        nicknames = [m.display_name for m in ctx.message.guild.members]
+        nicknames = [m.display_name for m in ctx.message.server.members]
         with open('temp.csv', mode='w', encoding='utf-8', newline='') as f:
             writer = csv.writer(f, dialect='excel')
             for v in nicknames:
                 writer.writerow([v])
                 after = time.time()
-                await self.bot.send_file(ctx.message.author, 'temp.csv', filename='stats.csv',
+                await bot.send_file(ctx.message.author, 'temp.csv', filename='stats.csv',
                                     content="Sent to your dms. Generated in {:.4}ms.".format((after - before)*1000))
     
     
