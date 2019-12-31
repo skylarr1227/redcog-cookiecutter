@@ -128,8 +128,8 @@ class Skyutils(commands.Cog):
         if color is None:
             color = await ctx.embed_color()
         embed = discord.Embed(description=text, color=color)
-        embed.set_footer(text="Be the first to Click the Firework reaction!!!", icon_url="https://pokepla.net/epic2.gif")
-        embed.set_author(name="Event Title here", icon_url="https://66.media.tumblr.com/f2c3cb58e5df9b083bb4db24bf7f065a/tumblr_mney5aJkmu1s5jjtzo1_r1_400.gif")
+        embed.set_footer(text="Be the first to Click the Firework reaction!!!", icon_url="https://cdn.discordapp.com/emojis/604916559709995008.gif")
+        embed.set_author(name="Happy New Years!!!!", icon_url="https://cdn.discordapp.com/emojis/610290337734197252.gif")
         msg=await ctx.send(embed=embed)
         def check(reaction, user):
             if user.bot:
@@ -140,7 +140,7 @@ class Skyutils(commands.Cog):
         await msg.add_reaction(emoji)
         reaction, user = await self.bot.wait_for('reaction_add', check=check)
        # await ctx.channel.send (str(user))      
-        await ctx.send(f"<@{str(user.id)}> clicked the reaction first! Better luck next time everyone else")
+        await ctx.send(f"and... <@{str(user.id)}> got it first!!! Here comes 2020 bitches.")
       #  await ctx.delete(msg)
             
            
